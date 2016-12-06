@@ -3,6 +3,7 @@ package com.example.easyattendance.attendance;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -81,8 +82,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_attendance) {
-            // Handle the camera action
+            AttendanceFragment attendanceFragment = new AttendanceFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main,attendanceFragment,attendanceFragment.getTag()).commit();
+
+
         } else if (id == R.id.nav_createClass) {
+            CreateclassFragment createclassFragment = new CreateclassFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main,createclassFragment,createclassFragment.getTag()).commit();
 
         } else if (id == R.id.nav_result) {
 

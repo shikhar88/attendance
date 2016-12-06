@@ -8,4 +8,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="class_message">Enter class name</string>
+    <string name="class_title">Create Class</string>
 </resources>

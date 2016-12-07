@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -33,20 +34,36 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
         return view;
     }
 
-    public void onClick(View view) {
+    public void onClick(final View view) {
         switch (view.getId()) {
             case R.id.button_createclass:
                 LayoutInflater layoutInflaterAndroid = getActivity().getLayoutInflater();
-                View mView = layoutInflaterAndroid.inflate(R.layout.createclass, null);
+                final View mView = layoutInflaterAndroid.inflate(R.layout.createclass, null);
                 AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(view.getContext());
                 alertDialogBuilderUserInput.setView(mView);
-
-                final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+                final EditText classnameText = (EditText) mView.findViewById(R.id.classnameInput);
+                final EditText classyearText = (EditText) mView.findViewById(R.id.classyearInput);
                 alertDialogBuilderUserInput
                         .setCancelable(false)
-                        .setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogBox, int id) {
-                                // ToDo get user input here
+                                final String classname = classnameText.getText().toString();
+                                final String classyear = classyearText.getText().toString();
+                                if (classname.length() == 0 && classyear.length() == 0){
+                                    Toast.makeText(getActivity().getApplicationContext(),
+                                            "Fields are empty", Toast.LENGTH_SHORT).show();
+                                }
+                                else if (classyear.length() == 0){
+                                    Toast.makeText(getActivity().getApplicationContext(),
+                                            "Year field is empty", Toast.LENGTH_SHORT).show();
+                                }
+                                else if ( classname.length() == 0 ){
+                                    Toast.makeText(getActivity().getApplicationContext(),
+                                            "Class name field is empty", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+
+                                }
                             }
                         })
 

@@ -14,9 +14,17 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/userInputDialog"
+        android:id="@+id/classnameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/class_message"
         android:inputType="text" />
+
+    <EditText
+        android:id="@+id/classyearInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter class year"
+        android:maxLength="4"
+        android:inputType="number" />
 </LinearLayout>

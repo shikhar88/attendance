@@ -24,7 +24,7 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class CreateclassFragment extends Fragment implements View.OnClickListener {
-    View view;
+    View rootview;
     public CreateclassFragment() {
         // Required empty public constructor
     }
@@ -35,6 +35,7 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_createclass, container, false);
+        rootview = view;
         DatabaseHelper mDbHelper = new DatabaseHelper(getContext());
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM classroom",null);
@@ -97,6 +98,10 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
                                             values.put("class_year", classyear);
                                             db.insert("classroom", null, values);
                                             db.close(); // Closing database connection
+                                            LinearLayout layout = (LinearLayout) rootview.findViewById(R.id.linearlayouttest);
+                                            Button button = new Button(getActivity()); // needs activity context
+                                            button.setText(classname);
+                                            layout.addView(button);
                                             Toast.makeText(getActivity().getApplicationContext(),
                                                     "Class room has been created", Toast.LENGTH_SHORT).show();
                                         }

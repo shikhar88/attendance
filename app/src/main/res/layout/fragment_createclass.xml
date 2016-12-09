@@ -8,6 +8,17 @@
         android:text="Create class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:id="@+id/button_createclass" />
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:id="@+id/linearlayouttest"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/button_createclass"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical" >
+        </LinearLayout>
 </RelativeLayout>

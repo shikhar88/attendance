@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,7 +158,7 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    public void dynamicButton(String text,int bid){
+    public void dynamicButton(final String text, final int bid){
         LinearLayout layout = (LinearLayout) rootview.findViewById(R.id.linearlayouttest);
         Button button = new Button(getActivity()); // needs activity context
         button.setText(text);
@@ -167,8 +168,14 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(),
-                        "Test", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity().getApplicationContext(),
+//                        "Test", Toast.LENGTH_SHORT).show();
+                ClassFragment classFragment = new ClassFragment();
+                final Bundle bundle = new Bundle();
+                bundle.putString("class_name",text);
+                bundle.putString("class_id",String.valueOf(bid));
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_main,classFragment,classFragment.getTag()).commit();
             }
         });
         layout.addView(button);

@@ -41,10 +41,24 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
         Cursor cursor = db.rawQuery("SELECT * FROM classroom",null);
         try{
             while (cursor.moveToNext()) {
-                LinearLayout layout = (LinearLayout) view.findViewById(R.id.linearlayouttest);
-                Button button = new Button(getActivity()); // needs activity context
-                button.setText(cursor.getString( cursor.getColumnIndex("class_name") ));
-                layout.addView(button);
+                String text = cursor.getString( cursor.getColumnIndex("class_name") );
+                String tag = cursor.getString( cursor.getColumnIndex("id") );
+                int bid = Integer.parseInt(cursor.getString( cursor.getColumnIndex("id") ));
+                dynamicButton(text,bid);
+//                LinearLayout layout = (LinearLayout) view.findViewById(R.id.linearlayouttest);
+//                Button button = new Button(getActivity()); // needs activity context
+//                button.setText(cursor.getString( cursor.getColumnIndex("class_name") ));
+//
+//                button.setId(Integer.parseInt(cursor.getString( cursor.getColumnIndex("id") )));
+//                button.setTag(cursor.getString( cursor.getColumnIndex("id") ));
+//                button.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(getActivity().getApplicationContext(),
+//                                "Test", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                layout.addView(button);
             }
         }finally {
 
@@ -96,14 +110,29 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
                                             ContentValues values = new ContentValues();
                                             values.put("class_name", classname);
                                             values.put("class_year", classyear);
-                                            db.insert("classroom", null, values);
+                                            Integer dbId = (int) (long) db.insert("classroom", null, values);
                                             db.close(); // Closing database connection
-                                            LinearLayout layout = (LinearLayout) rootview.findViewById(R.id.linearlayouttest);
-                                            Button button = new Button(getActivity()); // needs activity context
-                                            button.setText(classname);
-                                            layout.addView(button);
-                                            Toast.makeText(getActivity().getApplicationContext(),
-                                                    "Class room has been created", Toast.LENGTH_SHORT).show();
+                                            if(dbId != -1) {
+                                                dynamicButton(classname,dbId);
+//                                                LinearLayout layout = (LinearLayout) rootview.findViewById(R.id.linearlayouttest);
+//                                                Button button = new Button(getActivity()); // needs activity context
+//                                                button.setText(classname);
+//                                                button.setId(dbId);
+//                                                button.setTag(dbId);
+//                                                button.setOnClickListener(new View.OnClickListener() {
+//                                                    @Override
+//                                                    public void onClick(View v) {
+//                                                        Toast.makeText(getActivity().getApplicationContext(),
+//                                                                "Test", Toast.LENGTH_SHORT).show();
+//                                                    }
+//                                                });
+//                                                layout.addView(button);
+                                                Toast.makeText(getActivity().getApplicationContext(),
+                                                        "Class room has been created", Toast.LENGTH_SHORT).show();
+                                            }
+                                            else
+                                                Toast.makeText(getActivity().getApplicationContext(),
+                                                        "Error creating database", Toast.LENGTH_SHORT).show();
                                         }
                                     }finally {
 
@@ -126,6 +155,23 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
                 alertDialogAndroid.show();
                 break;
         }
+    }
+
+    public void dynamicButton(String text,int bid){
+        LinearLayout layout = (LinearLayout) rootview.findViewById(R.id.linearlayouttest);
+        Button button = new Button(getActivity()); // needs activity context
+        button.setText(text);
+
+        button.setId(bid);
+//        button.setTag(tag);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getApplicationContext(),
+                        "Test", Toast.LENGTH_SHORT).show();
+            }
+        });
+        layout.addView(button);
     }
 
 }

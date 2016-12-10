@@ -13,11 +13,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CLASSROOM = "CREATE TABLE "
             + "classroom" + "(" + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT," + "class_name"
             + " TEXT," + "class_year"+" TEXT," + "student_details" + " TEXT"+")";
+    private static final String CREATE_TABLE_STUDENT = "CREATE TABLE "
+            + "student" + "(" + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT," + "class_id"
+            + " TEXT," + "name"+" TEXT" + ")";
     private static final String CREATE_TABLE_ATTENDANCE = "CREATE TABLE "
             + "attendance" + "(" + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT," + "class_id"
             + " TEXT," + "year" + " TEXT," + "month" + " TEXT," + "day" + " TEXT," + "attendance" + " TEXT" + ")";
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 3);
+        super(context, DATABASE_NAME, null, 4);
     }
 
     @Override
@@ -25,14 +28,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // creating required tables
         db.execSQL(CREATE_TABLE_CLASSROOM);
         db.execSQL(CREATE_TABLE_ATTENDANCE);
+        db.execSQL(CREATE_TABLE_STUDENT);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + "classroom");
         db.execSQL("DROP TABLE IF EXISTS " + "attendance");
+        db.execSQL("DROP TABLE IF EXISTS " + "student");
         db.execSQL(CREATE_TABLE_CLASSROOM);
         db.execSQL(CREATE_TABLE_ATTENDANCE);
+        db.execSQL(CREATE_TABLE_STUDENT);
 
     }
 }

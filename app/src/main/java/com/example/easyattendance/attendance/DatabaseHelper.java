@@ -15,12 +15,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " TEXT," + "class_year"+" TEXT," + "student_details" + " TEXT"+")";
     private static final String CREATE_TABLE_STUDENT = "CREATE TABLE "
             + "student" + "(" + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT," + "class_id"
-            + " TEXT," + "name"+" TEXT" + ")";
+            + " TEXT," + "name"+" TEXT," + "rollno"+" TEXT" + ")";
     private static final String CREATE_TABLE_ATTENDANCE = "CREATE TABLE "
             + "attendance" + "(" + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT," + "class_id"
             + " TEXT," + "year" + " TEXT," + "month" + " TEXT," + "day" + " TEXT," + "attendance" + " TEXT" + ")";
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 6);
     }
 
     @Override

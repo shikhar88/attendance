@@ -174,6 +174,7 @@ public class CreateclassFragment extends Fragment implements View.OnClickListene
                 final Bundle bundle = new Bundle();
                 bundle.putString("class_name",text);
                 bundle.putString("class_id",String.valueOf(bid));
+                classFragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.content_main,classFragment,classFragment.getTag()).commit();
             }

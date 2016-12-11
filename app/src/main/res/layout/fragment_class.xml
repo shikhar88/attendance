@@ -1,13 +1,34 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.easyattendance.attendance.ClassFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="class fragment" />
+        android:id="@+id/table_student"
+        android:layout_below="@+id/button_addstudent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        >
+        <TableRow>
+            <TextView
+                android:text="sdfsd"
+                android:padding="3dip" />
+            <TextView
+                android:text="asdas"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
 
-</FrameLayout>
+    </TableLayout>
+    <Button
+        android:text="Add students"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button_addstudent" />
+
+</RelativeLayout>

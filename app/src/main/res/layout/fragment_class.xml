@@ -14,11 +14,13 @@
         >
         <TableRow>
             <TextView
-                android:text="sdfsd"
+                android:text="Student Name"
+                android:textStyle="bold"
                 android:padding="3dip" />
             <TextView
-                android:text="asdas"
+                android:text="Roll no"
                 android:gravity="right"
+                android:textStyle="bold"
                 android:padding="3dip" />
         </TableRow>
 

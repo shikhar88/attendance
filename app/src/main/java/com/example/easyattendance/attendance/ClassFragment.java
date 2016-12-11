@@ -19,6 +19,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.support.design.R.id.right;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -102,6 +104,7 @@ public class ClassFragment extends Fragment implements View.OnClickListener{
                                     if(dbId != -1) {
                                         Toast.makeText(getActivity().getApplicationContext(),
                                                     "Entry successful", Toast.LENGTH_SHORT).show();
+                                        tableStudent(studentname,rollno);
                                     }
                                     else
                                         Toast.makeText(getActivity().getApplicationContext(),
@@ -129,8 +132,12 @@ public class ClassFragment extends Fragment implements View.OnClickListener{
         tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
         TextView textView1 = new TextView(getContext());
         textView1.setText(studentName);
+        textView1.setMinWidth(50);
+        textView1.setPadding(3,3,3,3);
         TextView textView2 = new TextView(getContext());
         textView2.setText(rollNo);
+        textView2.setPadding(3,3,3,3);
+        textView2.setGravity(right);
         tr.addView(textView1);
         tr.addView(textView2);
         tl.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
